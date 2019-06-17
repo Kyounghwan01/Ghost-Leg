@@ -53,11 +53,14 @@
       const ctx = canvas.getContext("2d");
       const sel = document.querySelector("#sel-num");
       let ballRadius = 5;
-      //   const numBtn = document.querySelector(".num");
-      //   numBtn.addEventListener("click", function(e) {
-      //     console.log(sel.value);
-      //   });
+      let yTest1 = [];
+      let yTest2 = [];
       let y = 30;
+      let ex1 = canvas.width / 5 + 25;
+      let ex2 = (canvas.width / 5) * 2 + 25;
+      let ex3 = (canvas.width / 5) * 3 + 25;
+      let isReady = false;
+      let state = 1;
 
       // 기본 창 만들기
       function createWorld() {
@@ -74,55 +77,96 @@
         ctx.fillRect((canvas.width / 5) * 3, 500, 50, 20);
 
         //블럭 선 그리기
-        ctx.beginPath();
-        ctx.moveTo(canvas.width / 5 + 25, 10 + 20);
-        ctx.lineTo(canvas.width / 5 + 25, 500);
-        ctx.moveTo((canvas.width / 5) * 2 + 25, 10 + 20);
-        ctx.lineTo((canvas.width / 5) * 2 + 25, 500);
-        ctx.moveTo((canvas.width / 5) * 3 + 25, 10 + 20);
-        ctx.lineTo((canvas.width / 5) * 3 + 25, 500);
-        ctx.closePath();
+        ctx.strokeStyle = "black";
+        ctx.moveTo(ex1, 10 + 20);
+        ctx.lineTo(ex1, 500);
+        ctx.moveTo(ex2, 10 + 20);
+        ctx.lineTo(ex2, 500);
+        ctx.moveTo(ex3, 10 + 20);
+        ctx.lineTo(ex3, 500);
         ctx.stroke();
       }
-      createWorld();
 
       //사다리 만들기
 
       function leg() {
         y += 10;
         ctx.beginPath();
-        ctx.moveTo(canvas.width / 5 + 25, y);
-        if (Math.random(0, 1) * 100 > 80) {
-          ctx.lineTo(canvas.width / 5 + 25 + canvas.width / 5, y);
+        ctx.moveTo(ex1, y);
+        if (Math.random(0, 1) * 100 > 85) {
+          ctx.lineTo(ex1 + canvas.width / 5, y);
+          //xTest1.push(ex1 + canvas.width / 5);
+          yTest1.push(y);
+        } else {
+          ctx.moveTo(ex2, y);
+          if (Math.random(0, 1) * 100 > 85) {
+            ctx.lineTo(ex2 + canvas.width / 5, y);
+            //xTest2.push((canvas.width / 5) * 2 + 25 + canvas.width / 5);
+            yTest2.push(y);
+          }
         }
-        ctx.moveTo((canvas.width / 5)*2 + 25, y);
-        if (Math.random(0, 1) * 100 > 80) {
-          ctx.lineTo((canvas.width / 5)*2 + 25 + canvas.width / 5, y);
-        }
+        console.log(yTest1);
+        //console.log(yTest2);
         ctx.stroke();
         ctx.closePath();
         line = requestAnimationFrame(leg);
-        if (y === 490) {
+        if (y > 470) {
           cancelAnimationFrame(line);
+          isReady = true;
         }
       }
-      leg();
 
-      //   function drawBall() {
-      //     ctx.clearRect(0, 0, canvas.width, canvas.height);
-      //     createWorld();
-      //     ctx.beginPath();
-      //     ctx.arc(canvas.width / 5 + 25, y, ballRadius, 0, Math.PI * 2);
-      //     ctx.fillStyle = "blue";
-      //     ctx.fill();
-      //     ctx.closePath();
-      //     y += 5;
-      //     ball = requestAnimationFrame(drawBall);
-      //     if(y===500){
-      //         cancelAnimationFrame(ball);
-      //     }
-      //   }
-      //   drawBall();
+
+      function test() {
+        for(let i = 0;i<30;i++){          
+          if(y === yTest1[i] && state === 1){
+            ex1 = ex2;
+            state = 2;
+          }else if(state === 2 && y === yTest2[i]){
+            ex1 = ex3;
+            state = 3;
+          }else if(state === 3 && y === yTest2[i]){
+            ex1 = ex2;
+            state = 2;
+          }
+          else if(state === 2 && y === yTest1[i]){
+            ex1 = canvas.width / 5 + 25;
+            state = 1;
+          }
+        }
+        console.log(state);
+        ctx.lineTo(ex1, y + 0.5);
+        ctx.strokeStyle = "blue";
+        ctx.stroke();
+        y += 1;
+        qwe = requestAnimationFrame(test);
+        if (y > 496) {
+          cancelAnimationFrame(qwe);
+        }
+      }
+      canvas.addEventListener("click", function(e) {
+        console.log(e)}
+      );
+      canvas.addEventListener("click", function(e) {
+        if (isReady) {
+          if (
+            e.clientX < 150 &&
+            e.clientX > 100 &&
+            e.clientY < 30 &&
+            e.clientY > 10
+          ) {
+            y = 30;
+            ctx.moveTo(ex1, y);
+            test();
+          }
+        }
+      });
+
+      (function() {
+        createWorld();
+        leg();
+      })();
+
     </script>
   </body>
 </html>
