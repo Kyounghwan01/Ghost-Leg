@@ -13,24 +13,23 @@
       .step1 {
         display: flex;
       }
-      #jsCanvas{
-          width: 500px;
-          height: 500px;
-          background-color: #fff000;
-      }
+      /* #canvas {
+        width: 400px;
+        height: 500px;
+      } */
     </style>
   </head>
   <body>
     <!-- 1. 사다리 갯수 입력 -->
-    
-      <div class="step1">
-        <div class="explain">갯수 선택</div>
-        <select id="sel-num">
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5" selected>5</option>
-          <option value="6">6</option>
+
+    <!-- <div class="step1">
+      <div class="explain">갯수 선택</div>
+      <select id="sel-num">
+        <option value="2">2</option>
+        <option value="3" selected>3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
           <option value="7">7</option>
           <option value="8">8</option>
           <option value="9">9</option>
@@ -45,18 +44,71 @@
           <option value="18">18</option>
           <option value="19">19</option>
           <option value="20">20</option>
-        </select>
-        <input type="button" class="num" value="사다리 갯수" />
-      </div>
-      <canvas id="jsCanvas"></canvas>
+      </select>
+      <input type="button" class="num" value="만들기" />
+    </div> -->
+    <canvas id="canvas" width="500" height="550"></canvas>
     <script>
-      const canvas = document.querySelector('#jsCanvas');
-      const ctx = canvas.getContext('2d');
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
       const sel = document.querySelector("#sel-num");
-      const numBtn = document.querySelector(".num");
-      numBtn.addEventListener("click", function(e) {
-        console.log(sel.value);
-      });
+      let ballRadius = 5;
+      //   const numBtn = document.querySelector(".num");
+      //   numBtn.addEventListener("click", function(e) {
+      //     console.log(sel.value);
+      //   });
+      let y = 30;
+
+      // 기본 창 만들기
+      function createWorld(){
+        ctx.fillStyle = "#fff000";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        //블럭 그리기
+        ctx.fillStyle = "green";
+        ctx.fillRect(canvas.width / 5, 10, 50, 20);
+        ctx.fillRect((canvas.width / 5) * 2, 10, 50, 20);
+        ctx.fillRect((canvas.width / 5) * 3, 10, 50, 20);
+        ctx.fillRect((canvas.width / 5) * 1, 500, 50, 20);
+        ctx.fillRect((canvas.width / 5) * 2, 500, 50, 20);
+        ctx.fillRect((canvas.width / 5) * 3, 500, 50, 20);
+
+        //블럭 선 그리기
+        ctx.beginPath();
+        ctx.moveTo(canvas.width / 5 + 25, 10 + 20);
+        ctx.lineTo(canvas.width / 5 + 25, 500);
+        ctx.moveTo((canvas.width / 5) * 2 + 25, 10 + 20);
+        ctx.lineTo((canvas.width / 5) * 2 + 25, 500);
+        ctx.moveTo((canvas.width / 5) * 3 + 25, 10 + 20);
+        ctx.lineTo((canvas.width / 5) * 3 + 25, 500);
+        ctx.closePath();
+        ctx.stroke();
+      }
+      createWorld();
+
+      //사다리 만들기
+
+      function leg(){
+          
+      }
+
+    //   function drawBall() {
+    //     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //     createWorld();
+    //     ctx.beginPath();
+    //     ctx.arc(canvas.width / 5 + 25, y, ballRadius, 0, Math.PI * 2);
+    //     ctx.fillStyle = "blue";
+    //     ctx.fill();
+    //     ctx.closePath();
+    //     y += 5;
+    //     ball = requestAnimationFrame(drawBall);
+    //     if(y===500){
+    //         cancelAnimationFrame(ball);
+    //     }
+    //   }
+    //   drawBall();
+
+      
     </script>
   </body>
 </html>
