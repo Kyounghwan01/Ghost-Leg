@@ -60,7 +60,7 @@
       let y = 30;
 
       // 기본 창 만들기
-      function createWorld(){
+      function createWorld() {
         ctx.fillStyle = "#fff000";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -88,27 +88,41 @@
 
       //사다리 만들기
 
-      function leg(){
-          
+      function leg() {
+        y += 10;
+        ctx.beginPath();
+        ctx.moveTo(canvas.width / 5 + 25, y);
+        if (Math.random(0, 1) * 100 > 80) {
+          ctx.lineTo(canvas.width / 5 + 25 + canvas.width / 5, y);
+        }
+        ctx.moveTo((canvas.width / 5)*2 + 25, y);
+        if (Math.random(0, 1) * 100 > 80) {
+          ctx.lineTo((canvas.width / 5)*2 + 25 + canvas.width / 5, y);
+        }
+        ctx.stroke();
+        ctx.closePath();
+        line = requestAnimationFrame(leg);
+        if (y === 490) {
+          cancelAnimationFrame(line);
+        }
       }
+      leg();
 
-    //   function drawBall() {
-    //     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    //     createWorld();
-    //     ctx.beginPath();
-    //     ctx.arc(canvas.width / 5 + 25, y, ballRadius, 0, Math.PI * 2);
-    //     ctx.fillStyle = "blue";
-    //     ctx.fill();
-    //     ctx.closePath();
-    //     y += 5;
-    //     ball = requestAnimationFrame(drawBall);
-    //     if(y===500){
-    //         cancelAnimationFrame(ball);
-    //     }
-    //   }
-    //   drawBall();
-
-      
+      //   function drawBall() {
+      //     ctx.clearRect(0, 0, canvas.width, canvas.height);
+      //     createWorld();
+      //     ctx.beginPath();
+      //     ctx.arc(canvas.width / 5 + 25, y, ballRadius, 0, Math.PI * 2);
+      //     ctx.fillStyle = "blue";
+      //     ctx.fill();
+      //     ctx.closePath();
+      //     y += 5;
+      //     ball = requestAnimationFrame(drawBall);
+      //     if(y===500){
+      //         cancelAnimationFrame(ball);
+      //     }
+      //   }
+      //   drawBall();
     </script>
   </body>
 </html>
