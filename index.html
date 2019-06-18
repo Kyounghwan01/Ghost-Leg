@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,43 +11,9 @@
         margin: 0;
         padding: 0;
       }
-      .step1 {
-        display: flex;
-      }
-      /* #canvas {
-        width: 400px;
-        height: 500px;
-      } */
     </style>
   </head>
   <body>
-    <!-- 1. 사다리 갯수 입력 -->
-
-    <!-- <div class="step1">
-      <div class="explain">갯수 선택</div>
-      <select id="sel-num">
-        <option value="2">2</option>
-        <option value="3" selected>3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-          <option value="13">13</option>
-          <option value="14">14</option>
-          <option value="15">15</option>
-          <option value="16">16</option>
-          <option value="17">17</option>
-          <option value="18">18</option>
-          <option value="19">19</option>
-          <option value="20">20</option>
-      </select>
-      <input type="button" class="num" value="만들기" />
-    </div> -->
     <canvas id="canvas" width="500" height="550"></canvas>
     <script>
       const canvas = document.getElementById("canvas");
@@ -74,7 +41,7 @@
         ctx.fillRect((canvas.width / 5) * 2, 10, 50, 20);
         ctx.fillStyle = "red";
         ctx.fillRect((canvas.width / 5) * 3, 10, 50, 20);
-        ctx.fillStyle = 'grey';
+        ctx.fillStyle = "grey";
         ctx.fillRect((canvas.width / 5) * 1, 500, 50, 20);
         ctx.fillRect((canvas.width / 5) * 2, 500, 50, 20);
         ctx.fillRect((canvas.width / 5) * 3, 500, 50, 20);
@@ -96,20 +63,16 @@
         y += 10;
         ctx.beginPath();
         ctx.moveTo(ex1, y);
-        if (Math.random(0, 1) * 100 > 85) {
+        if (Math.random(0, 1) * 100 > 90) {
           ctx.lineTo(ex1 + canvas.width / 5, y);
-          //xTest1.push(ex1 + canvas.width / 5);
           yTest1.push(y);
         } else {
           ctx.moveTo(ex2, y);
-          if (Math.random(0, 1) * 100 > 85) {
+          if (Math.random(0, 1) * 100 > 90) {
             ctx.lineTo(ex2 + canvas.width / 5, y);
-            //xTest2.push((canvas.width / 5) * 2 + 25 + canvas.width / 5);
             yTest2.push(y);
           }
         }
-        // console.log(yTest1);
-        //console.log(yTest2);
         ctx.stroke();
         ctx.closePath();
         line = requestAnimationFrame(leg);
@@ -122,13 +85,13 @@
       function test() {
         for (let i = 0; i < 30; i++) {
           if (y === yTest1[i] && state === 1) {
-            ex1 = ex2;
+            ex1 = (canvas.width / 5) * 2 + 25;
             state = 2;
           } else if (state === 2 && y === yTest2[i]) {
-            ex1 = ex3;
+            ex1 = (canvas.width / 5) * 3 + 25;
             state = 3;
           } else if (state === 3 && y === yTest2[i]) {
-            ex1 = ex2;
+            ex1 = (canvas.width / 5) * 2 + 25;
             state = 2;
           } else if (state === 2 && y === yTest1[i]) {
             ex1 = canvas.width / 5 + 25;
@@ -140,24 +103,29 @@
         ctx.strokeStyle = "green";
         ctx.stroke();
         y += 1;
-        qwe = requestAnimationFrame(test);
-        if (y > 496) {
-          cancelAnimationFrame(qwe);
+        fun = requestAnimationFrame(test);
+        if (y === 500) {
+          ctx.fillStyle = "green"
+          ctx.fillRect(ex1 -25, 500, 50, 20);
+          cancelAnimationFrame(fun);
+          isReady = true;
+          ex1 = canvas.width / 5 + 25;
+          ctx.closePath();
         }
       }
 
       function test1() {
         for (let i = 0; i < 30; i++) {
           if (state === 2 && y === yTest2[i]) {
-            ex2 = ex3;
+            ex2 = (canvas.width / 5) * 3 + 25;
             state = 3;
           } else if (state === 3 && y === yTest2[i]) {
             ex2 = (canvas.width / 5) * 2 + 25;
             state = 2;
           } else if (state === 2 && y === yTest1[i]) {
-            ex2 = ex1;
+            ex2 = canvas.width / 5+ 25;
             state = 1;
-          } else if(state === 1 && y === yTest1[i]){
+          } else if (state === 1 && y === yTest1[i]) {
             ex2 = (canvas.width / 5) * 2 + 25;
             state = 2;
           }
@@ -167,15 +135,50 @@
         ctx.strokeStyle = "blue";
         ctx.stroke();
         y += 1;
-        qwe1 = requestAnimationFrame(test1);
-        if (y > 496) {
-          cancelAnimationFrame(qwe1);
+        fun = requestAnimationFrame(test1);
+        if (y === 500) {
+          ctx.fillStyle = "blue"
+          ctx.fillRect(ex2 -25, 500, 50, 20);
+          cancelAnimationFrame(fun);
+          isReady = true;
+          ex2 = canvas.width / 5 + 25;
+          ctx.closePath();
         }
       }
 
-      canvas.addEventListener("click", function(e) {
-        console.log(e);
-      });
+      function test2() {
+        for (let i = 0; i < 30; i++) {
+          if (state === 2 && y === yTest2[i]) {
+            ex3 = (canvas.width / 5) * 3 + 25;
+            state = 3;
+          } else if (state === 3 && y === yTest2[i]) {
+            ex3 = (canvas.width / 5) * 2 + 25;
+            state = 2;
+          } else if (state === 2 && y === yTest1[i]) {
+            ex3 = canvas.width / 5+ 25;
+            state = 1;
+          } else if (state === 1 && y === yTest1[i]) {
+            ex3 = (canvas.width / 5) * 2 + 25;
+            state = 2;
+          }
+        }
+
+        ctx.lineTo(ex3, y + 0.5);
+        ctx.strokeStyle = "red";
+        ctx.stroke();
+        y += 1;
+        fun = requestAnimationFrame(test2);
+        if (y === 500) {
+          ctx.fillStyle = "red"
+          ctx.fillRect(ex3 -25, 500, 50, 20);
+          cancelAnimationFrame(fun);
+          isReady = true;
+          ex3 = canvas.width / 5 + 25;
+          ctx.closePath();
+        }
+      }
+
+
       canvas.addEventListener("click", function(e) {
         if (isReady) {
           if (
@@ -184,27 +187,52 @@
             e.clientY < 30 &&
             e.clientY > 10
           ) {
+            isReady = false;
             state = 1;
             y = 30;
+            ctx.beginPath();
             ctx.moveTo(ex1, y);
             test();
           }
         }
       });
+
       canvas.addEventListener("click", function(e) {
-        if (
-          e.clientX < 250 &&
-          e.clientX > 200 &&
-          e.clientY < 30 &&
-          e.clientY > 10
-        ) {
-          state = 2;
-          y = 30;
-          ctx.moveTo(ex2, y);
-          test1();
+        if (isReady) {
+          if (
+            e.clientX < 250 &&
+            e.clientX > 200 &&
+            e.clientY < 30 &&
+            e.clientY > 10
+          ) {
+            isReady = false;
+            state = 2;
+            y = 30;
+            ctx.beginPath();
+            ctx.moveTo(ex2, y);
+            test1();
+          }
         }
       });
-      
+
+      canvas.addEventListener("click", function(e) {
+        if (isReady) {
+          if (
+            e.clientX < 350 &&
+            e.clientX > 300 &&
+            e.clientY < 30 &&
+            e.clientY > 10
+          ) {
+            isReady = false;
+            state = 3;
+            y = 30;
+            ctx.beginPath();
+            ctx.moveTo(ex3, y);
+            test2();
+          }
+        }
+      });
+
       (function() {
         createWorld();
         leg();
