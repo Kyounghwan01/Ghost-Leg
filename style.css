@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.stage-one {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  /* 삭제 */
+  /* display: none; */
+}
+.step {
+  font-weight: bold;
+  font-size: 30px;
+  color: white;
+}
+select {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 100px;
+  height: 30px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  text-align-last: center;
+  background-color: black;
+}
+select:focus {
+  outline: none;
+}
+#sel-num-submit {
+  font-size: 20px;
+  font-weight: bold;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 5px;
+}
+#sel-num-submit:focus {
+  outline: none;
+}
+
+.dis-none {
+  display: none;
+}
+.stage-two {
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  background-color: black;
+}
+
+#canvas {
+  background-color: black;
+  margin: 0;
+  padding: 0;
+}
+.front {
+  width: 700px;
+  height: 50px;
+  padding-top: 20px;
+  margin: 0 auto;
+}
+.text {
+  float: left;
+  width: 90px;
+  height: 45px;
+  font-size: 15px;
+  margin-right: 45px;
+  border: 2px solid white;
+  margin-left: 1px;
+}
+.text1 {
+  float: left;
+  height: 45px;
+}
+.green{
+  background-color: green;
+}
+.blue{
+  background-color: blue;
+}
+.red{
+  background-color: red;
+}
+.yellow{
+  background-color: yellow;
+}
+.purple{
+  background-color: purple;
+}
