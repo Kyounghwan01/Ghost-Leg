@@ -1,0 +1,118 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+.world {
+  width: 100vw;
+  height: 100%;
+  background-color: black;
+}
+h1 {
+  color: white;
+  margin: 0;
+  text-align: center;
+  padding-top: 30px;
+  font-size: 50px;
+  height: 5vh;
+}
+.minus-btn,
+.plus-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.ladder-count {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0 10px 0 10px;
+  display: inline;
+}
+.count-con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 92vh;
+  flex-direction: column;
+}
+.start-btn {
+  width: 120px;
+  height: 60px;
+  font-size: 15px;
+  margin-top: 30px;
+  border-radius: 0;
+  font-weight: bold;
+}
+.draw-con {
+  width: 100vw;
+  height: 92vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.con-dis {
+  display: none;
+}
+.top-con, .bot-con {
+  height: 5vh;
+  margin: 0;
+  padding: 0;
+}
+#canvas {
+  background-color: black;
+}
+.next-btn{
+    margin-top: 30px;
+    width: 100px;
+    height: 50px;
+    font-size: 15px;
+    margin-top: 30px;
+    border-radius: 0;
+    font-weight: bold;
+}
+.result-btn{
+    margin-top: 30px;
+    width: 100px;
+    height: 50px;
+    font-size: 15px;
+    margin-top: 30px;
+    border-radius: 0;
+    font-weight: bold;
+    background-color: #fc5858;
+    color: white;
+    border: none;
+}
+
+.text-top {
+    display: inline-block;
+    width: 87px;
+    height: 4vh;
+    text-align: center;
+    font-size: 15px;
+    margin: 0 5px;
+    background: transparent;
+    color: #f15e5e;
+    border: 1px solid #f15e5e;
+    transition: all .5s;
+}
+.text-bot {
+    display: inline-block;
+    width: 87px;
+    height: 4vh;
+    text-align: center;
+    font-size: 15px;
+    margin: 0 5px;
+    background: transparent;
+    color: #57e3fc;
+    border: 1px solid #57e3fc;
+    transition: all .5s;
+}
+.text-top:focus, .text-bot:focus, .result-btn:focus, .minus-btn:focus, .plus-btn:focus{
+    outline: none;
+}
