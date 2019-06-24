@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>사다리 게임</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="world">
+      <h1>GAME</h1>
+      <div class="count-con">
+        <div class="count">
+          <input type="button" value="-" class="minus-btn" />
+          <p class="ladder-count"></p>
+          <input type="button" value="+" class="plus-btn" />
+        </div>
+        <button class="start-btn">START</button>
+      </div>
+      <div class="draw-con con-dis">
+        <div class="top-con"></div>
+        <canvas id="canvas" width="1000" height="500"></canvas>
+        <div class="bot-con"></div>
+        <button class="next-btn">NEXT</button>
+        <button class="result-btn con-dis">RESULT</button>
+      </div>
+      <div class="result"></div>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>
